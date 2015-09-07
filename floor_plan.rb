@@ -1,7 +1,4 @@
-# doctest: find most efficient coordinates
-# >> best_coordinates
-# => [2,2]
-# Given a floor plan below figure out the best place to place the kitchen
+# This script will find the best place to build the kitchen
 # '_' = blank space
 # 'X' = unavailable space
 # 'E' = engineer
@@ -17,9 +14,9 @@ floor_plan =[
 ]
 
 # create an array of arrays to determine engineer coordinates
-
 floor_plan.map! { |s| s[0].split(' ') }
 
+# map each space to a coordinate
 @hash = Hash.new("")
 floor_plan.each_with_index do |lat, lat_index|
   lat.each_with_index do |long, long_index|
@@ -46,7 +43,7 @@ def best_coordinates(eng_coord)
     puts "Landed on an X."
     alternate_coords = []
 
-    # list all possible coordinates close by
+    # list all possible coordinates near by
     best_coord << best_coord[0] - 1
     best_coord << best_coord[0] + 1
     best_coord = best_coord.permutation(2).to_a.sort.reverse
